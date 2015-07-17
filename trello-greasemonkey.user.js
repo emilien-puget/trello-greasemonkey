@@ -4,19 +4,19 @@
 // @include     https://trello.com/*
 // @include     https://*.trello.com/*
 // @version     1
-// @grant       none
+// @grant       GM_addStyle
 // @require  http://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js
 // @oujs:author emilien-puget
 // ==/UserScript==
-var showIdCard = function () {
-    $('.card-short-id').removeClass('hide').css('padding', '5px');
-};
+
+GM_addStyle ( "                                     \
+    .card-short-id {                                \
+        display: inline !important;                 \
+        padding: 5px;                               \
+    }                                               \
+" );
+
 $(function () {
-
-    $('.list-card').bind('mouseout', function () {
-        showIdCard();
-    });
-
     $('#content').bind('mousewheel DOMMouseScroll', function (event) {
         if ($(event.target).parents('.list').length === 0) {
             var $board = $('#board');
@@ -32,5 +32,4 @@ $(function () {
             }
         }
     });
-    showIdCard();
 });
